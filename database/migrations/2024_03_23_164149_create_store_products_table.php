@@ -13,6 +13,7 @@ class CreateStoreProductsTable extends Migration
         Schema::create('store_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained();
+            $table->foreignId('store_id')->constrained();
             $table->decimal('price', 10, 2);
             $table->decimal('max_discount', 10, 2);
             $table->boolean('is_active')->default(true);
