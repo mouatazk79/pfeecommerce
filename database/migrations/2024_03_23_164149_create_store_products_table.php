@@ -16,6 +16,7 @@ class CreateStoreProductsTable extends Migration
             $table->decimal('price', 10, 2);
             $table->decimal('max_discount', 10, 2);
             $table->boolean('is_active')->default(true);
+            $table->foreignId('store_id')->constrained();
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('phone');
             $table->foreignId('status_id')->constrained('order_status');
             $table->foreignId('store_id')->constrained();
+            $table->foreignId('client_id')->constrained();
             $table->dateTime('date_created');
             $table->dateTime('date_updated')->nullable();
             $table->dateTime('date_deleted')->nullable();

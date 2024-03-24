@@ -12,9 +12,9 @@ class Order extends Model
 
     // Order.php
 
-    public function user()
+    public function client()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Client::class);
     }
 // Order.php
 
