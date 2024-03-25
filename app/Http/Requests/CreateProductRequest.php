@@ -12,7 +12,7 @@ class CreateProductRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,8 +22,16 @@ class CreateProductRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        return Product::$rules;
+        return [
+            'name' => 'required|string|max:255',
+            'short_description' => 'required|string',
+            'long_description' => 'required|string',
+            'is_simple' => 'required|boolean',
+            'main_picture_url' => 'nullable|required|string',
+            'is_active' => 'required|boolean',
+            'slug' => 'required|string|max:255'
+        ];
     }
 }

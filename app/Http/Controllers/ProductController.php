@@ -4,15 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Http\Controllers\AppBaseController;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
-use Flash;
 
-class ProductController extends AppBaseController
+class ProductController
 {
-    /** @var ProductRepository $productRepository*/
-    private $productRepository;
+    private  $productRepository;
 
     public function __construct(ProductRepository $productRepo)
     {
@@ -35,21 +32,20 @@ class ProductController extends AppBaseController
      */
     public function create()
     {
-        return view('products.create');
+        return view('products.index');
     }
 
     /**
      * Store a newly created Product in storage.
      */
-    public function store(CreateProductRequest $request)
+    public function store(CreateProductRequest $request): \Illuminate\Http\RedirectResponse
     {
-        $input = $request->all();
 
-        $product = $this->productRepository->create($input);
+        $validatedData = $request->validated();
 
-        Flash::success('Product saved successfully.');
+        $product = $this->productRepository->create($validatedData);
 
-        return redirect(route('products.index'));
+        return redirect()->route('products.create')->with('success', 'Product created successfully.');
     }
 
     /**
